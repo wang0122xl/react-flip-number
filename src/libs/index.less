@@ -1,0 +1,103 @@
+@import './numbers.less';
+
+.flip-layer {
+    position: relative;
+    background: #FFFFFF;
+    border-radius: 8Px;
+    border: 1Px solid #000000;
+    width: 90Px;
+    height: 160Px;
+    line-height: 160Px;
+
+    .flip {
+        display: inline-block;
+        position: absolute;
+        box-shadow: 0 0 6Px rgba(250, 240, 229, 0.5);
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        text-align: center;
+
+        &::before,
+        &::after {
+            content: '';
+            color: #FFFFFF;
+            font-size: 120Px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            background: #000000;
+            overflow: hidden;
+            font-family: 'Helvetica Neue';
+            animation-duration: 0.6s;
+            animation-fill-mode: both;
+        }
+        &::before {
+            top: 0;
+            bottom: 50%;
+            border-radius: 8Px 8Px 0 0;
+            border-bottom: 1Px solid #FFFFFF;
+        }
+        &::after {
+            top: 50%;
+            bottom: 0;
+            line-height: 0;
+            border-radius: 0 0 8Px 8Px;
+        }
+
+        &.front {
+            z-index: auto;
+        }
+        &.back {
+            z-index: auto;
+        }
+
+        &.front.flip-down {
+            &::before {
+                transform-origin: 50% 100%;
+                animation-name: frontFlipDown;
+                animation-timing-function: ease-in;
+                box-shadow: 0 -2px 6px rgba(255, 255, 255, 0.3);
+                backface-visibility: hidden;
+                z-index: 3;
+            }
+        }
+        &.back.flip-down {
+            &::before {
+                z-index: 1;
+            }
+            &::after {
+                transform-origin: 50% 0;
+                animation-name: backFlipDown;
+                animation-timing-function: ease-out;
+                z-index: 2;
+            }
+        }
+
+        #numbers
+    }
+}
+
+@keyframes frontFlipDown {
+    0% {
+        transform: perspective(200Px) rotateX(0deg);
+    }
+    50% {
+        transform: perspective(200Px) rotateX(-90deg);
+    }
+    100% {
+        transform: perspective(200Px) rotateX(-90deg);
+    }
+}
+@keyframes backFlipDown {
+    0% {
+        transform: perspective(200Px) rotateX(90deg);
+    }
+    50% {
+        transform: perspective(200Px) rotateX(90deg);
+    }
+    100% {
+        transform: perspective(200Px) rotateX(0deg);
+    }
+}

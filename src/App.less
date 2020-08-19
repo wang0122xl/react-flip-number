@@ -1,0 +1,28 @@
+.app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.layer {
+  border-color: #FAF0E5 !important;
+  border-radius: 8Px;
+  width: 60Px !important;
+  height: 90Px !important;
+  line-height: 90Px !important;
+}
+
+.item {
+  &::before,
+  &::after {
+      color: #F87F00 !important;
+      background: #FAF0E5 !important;
+      font-size: 60Px !important;
+      font-weight: 500;
+  }
+  &::before {
+      border-color: #FAFAFA !important;
+  }
+}
